@@ -1,24 +1,24 @@
 import React from "react";
 import { Text, View, FlatList } from "react-native";
-import RecipesItem from "./RecipesItem";
+import Restaurant from "./Restaurant";
 
-export default class Recipes extends React.Component {
+export default class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             loading: false,
-            recipe: [],
-            url: 'https://smart-recipe.onrender.com/recipes'
+            restaurants: [],
+            url: 'https://restaurants-dbt2.onrender.com/restaurants'
         }
     }
 
     componentDidMount(){
-        this.getRecipe();
+        this.getRestaurants();
 
     }
 
-    getRecipe = () => {
+    getRestaurants = () => {
 
         this.setState({loading: true});
 
@@ -26,7 +26,7 @@ export default class Recipes extends React.Component {
         .then(res => res.json())
         .then(res => {
             this.setState({
-                recipe: res,
+                restaurants: res,
                 loading: false
             });
         })
@@ -44,9 +44,9 @@ export default class Recipes extends React.Component {
         return (
             <View>
                 <FlatList
-                data={this.state.recipe}
+                data={this.state.restaurants}
                 renderItem={
-                    ({item: recipe})=> <RecipesItem {...recipe} />
+                    ({item: restaurant})=> <Restaurant {...restaurant} />
                 }
                 >
                 </FlatList>
