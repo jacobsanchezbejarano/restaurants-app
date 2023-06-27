@@ -42,7 +42,7 @@ export default class MealList extends React.Component {
         }
 
         return (
-            <View style={styles.container}>
+            <View style={styles.suggestions}>
                 <FlatList
                 data={this.state.meals}
                 renderItem={
@@ -50,8 +50,6 @@ export default class MealList extends React.Component {
                 }
                 >
                 </FlatList>
-        
-
             </View>
         )
         
@@ -60,11 +58,15 @@ export default class MealList extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        justifyContent: 'flex-start', // Alinear los elementos al inicio de la fila
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    }
+        flexDirection: 'row',
+        marginTop: 0
+    },
+    suggestions: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
 })

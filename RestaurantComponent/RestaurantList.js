@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, StyleSheet } from "react-native";
 import Restaurant from "./Restaurant";
 
 export default class RestaurantList extends React.Component {
@@ -42,7 +42,7 @@ export default class RestaurantList extends React.Component {
         }
 
         return (
-            <View>
+            <View style={styles.container}>
                 <FlatList
                 data={this.state.restaurants}
                 renderItem={
@@ -57,3 +57,10 @@ export default class RestaurantList extends React.Component {
         
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 0,
+    },
+})

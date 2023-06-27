@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     height: 80,
     paddingHorizontal: 16,
     elevation: 4,
-    marginTop: Constants.statusBarHeight,
+    marginTop: 0,
   },
   logo: {
     width: 40,

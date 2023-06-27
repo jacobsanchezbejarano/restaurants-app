@@ -3,11 +3,14 @@ import { View, Image, StyleSheet } from "react-native";
 
 const HorizontalScrollItem = (props) => {
     return (
-        <View style={styles.item}>
+        <View style={styles.sponsored}>
+            <View style={styles.vidimg}>
             <Image
                 source={{ uri: 'https://img.freepik.com/foto-gratis/disparo-vertical-deliciosa-hamburguesa-placa-madera-pared-negra_181624-45483.jpg' }}
                 style={styles.image}
             />
+            </View>
+            {/* Repite los elementos restantes de la sección "sponsored" */}
         </View>
     );
 };
@@ -20,6 +23,21 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       marginHorizontal: 10,
+    },
+    sponsored: {
+      flexDirection: 'row',
+      overflowX: 'scroll',
+      overflowY: 'hidden',
+      whiteSpace: 'nowrap',
+    },
+    vidimg: {
+      width: '100%',
+      height: 'auto',
+      padding: 2,
+    },
+    image: {
+      width: '100%',
+      borderRadius: 15,
     },
   });
   
