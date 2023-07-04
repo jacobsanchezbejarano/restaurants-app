@@ -25,7 +25,7 @@ const Meal = (props) => {
 const styles = StyleSheet.create({
     suggestionsCard: {
         flex: 1,
-        width: '32%',
+        width: '100%',
         borderRadius: 15,
         borderWidth: 1,
         borderColor: '#848484',

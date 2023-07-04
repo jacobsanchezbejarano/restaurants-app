@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { Text, View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import Meal from "./Meal";
 
 export default class MealList extends React.Component {
@@ -13,14 +13,12 @@ export default class MealList extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getMeals();
-
     }
 
     getMeals = () => {
-
-        this.setState({loading: true});
+        this.setState({ loading: true });
 
         fetch(this.state.url)
         .then(res => res.json())
@@ -29,44 +27,45 @@ export default class MealList extends React.Component {
                 meals: res,
                 loading: false
             });
-        })
+        });
     }
 
     render() {
-        if(this.state.loading){
+        if (this.state.loading) {
             return (
                 <View>
                     <Text>Descargando lista</Text>
                 </View>
-            )
+            );
         }
 
         return (
-            <View style={styles.suggestions}>
-                <FlatList
-                data={this.state.meals}
-                renderItem={
-                    ({item: meal})=> <Meal {...meal} />
-                }
-                >
-                </FlatList>
-            </View>
-        )
-        
+            <ScrollView contentContainerStyle={styles.container}>
+                {this.state.meals.map((meal, index) => (
+                    <View key={meal.id} style={styles.mealContainer}>
+                        <Meal {...meal} />
+                    </View>
+                ))}
+            </ScrollView>
+        );
     }
 }
 
+const screenWidth = Dimensions.get("window").width;
+const itemMargin = 10;
+const itemSize = (screenWidth - itemMargin * 4) / 3;
+
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'flex-start', // Alinear los elementos al inicio de la fila
-        flexWrap: 'wrap',
+        flexGrow: 1,
+        paddingVertical: 10,
+        paddingHorizontal: itemMargin,
         flexDirection: 'row',
-        marginTop: 0
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
-    suggestions: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+    mealContainer: {
+        width: itemSize,
+        marginVertical: itemMargin / 2,
     },
-})
+});
